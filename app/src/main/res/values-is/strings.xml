@@ -113,8 +113,8 @@
     <string name="theme_colors">Litir</string>
     <string name="style_name_Rounded" tools:keep="@string/style_name_Rounded">Rúnnað</string>
     <string name="theme_style">Stíll</string>
-    <string name="spell_checker_service_name">Stafsetningarleiðrétting HeliBoard</string>
-    <string name="ime_settings">Stillingar HeliBoard</string>
+    <string name="spell_checker_service_name">Stafsetningarleiðrétting DuckBoard</string>
+    <string name="ime_settings">Stillingar DuckBoard</string>
     <string name="button_backup">Öryggisafrit</string>
     <string name="load_gesture_library_button_load">Hlaða inn orðasafni</string>
     <string name="load_gesture_library_button_delete">Eyða orðasafni</string>
@@ -124,7 +124,7 @@
     <string name="button_select_language">Veldu tungumál</string>
     <string name="replace_dictionary">Skipta út orðasafni</string>
     <string name="select_word" tools:keep="@string/select_word">Veldu orð</string>
-    <string name="android_spell_checker_settings">Stillingar stafsetningarleiðréttingar HeliBoard</string>
+    <string name="android_spell_checker_settings">Stillingar stafsetningarleiðréttingar DuckBoard</string>
     <string name="settings_category_input">Innsláttur</string>
     <string name="settings_category_additional_keys">Viðbótarlyklar</string>
     <string name="settings_category_clipboard_history">Ferilskrá klippispjalds</string>
@@ -438,8 +438,6 @@
     <string name="layout_emoji_bottom_row_with_action" tools:keep="@string/layout_emoji_bottom_row_with_action">Tjáningartákn í neðstu röð með aðgerðalykli</string>
     <string name="layout_clip_bottom_row_with_action" tools:keep="@string/layout_clip_bottom_row_with_action">Klippispjald í neðstu röð með aðgerðalykli</string>
     <string name="after_numpad_and_space">Með því að ýta á Enter eða Bil á eftir öðrum lyklum á talnaborði</string>
-    <string name="about_wiki_link">Fara á wiki-síðuna</string>
-    <string name="about_wiki_link_description">Allir GitHub-notendur geta endurbætt wiki-svæðið!</string>
     <string name="about_community_links">Samfélagstenglar</string>
     <string name="about_community_links_description">Þemu, framsetningar, umræður, …</string>
     <string name="space_swipe_toggle_dpad_entry">Víxla D-platta af/á</string>

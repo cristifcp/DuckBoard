@@ -44,18 +44,24 @@ object Defaults {
     }
 
     private const val DEFAULT_SIZE_SCALE = 1.0f // 100%
-    const val PREF_THEME_STYLE = KeyboardTheme.STYLE_MATERIAL
+    const val PREF_THEME_STYLE = KeyboardTheme.STYLE_ROUNDED
     fun PREF_ICON_STYLE(prefs: SharedPreferences) = prefs.getString(Settings.PREF_THEME_STYLE, PREF_THEME_STYLE)!!
     const val PREF_ACCENT_SHIFTED_ICON = false
-    const val PREF_THEME_COLORS = KeyboardTheme.THEME_LIGHT
-    const val PREF_THEME_COLORS_NIGHT = KeyboardTheme.THEME_DARK
-    const val PREF_THEME_KEY_BORDERS = false
+    const val PREF_THEME_COLORS = KeyboardTheme.THEME_DUCK_PAPER
+    // DuckBoard ships its own warm night look: a fork that shows the same grey
+    // keyboard as upstream has no reason to exist, and the picker is one tap away.
+    const val PREF_THEME_COLORS_NIGHT = KeyboardTheme.THEME_DUCK_NIGHT
+    // Gboard-like filled keys. Without these, upstream's Material style draws
+    // transparent key backgrounds and the letters look like they float on the page.
+    const val PREF_THEME_KEY_BORDERS = true
     @JvmField
     val PREF_THEME_DAY_NIGHT = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
     const val PREF_CUSTOM_ICON_NAMES = ""
     const val PREF_TOOLBAR_CUSTOM_KEY_CODES = ""
     const val PREF_AUTO_CAP = true
-    const val PREF_VIBRATE_ON = false
+    // On by default: a keyboard with no touch feedback feels broken next to
+    // every other Android keyboard. Sound stays off.
+    const val PREF_VIBRATE_ON = true
     const val PREF_VIBRATE_IN_DND_MODE = false
     const val PREF_SOUND_ON = false
     const val PREF_SUGGEST_EMOJIS = true
@@ -78,7 +84,8 @@ object Defaults {
     const val PREF_BLOCK_POTENTIALLY_OFFENSIVE = true
     const val PREF_SHOW_LANGUAGE_SWITCH_KEY = false
     const val PREF_LANGUAGE_SWITCH_KEY = "internal"
-    const val PREF_SHOW_EMOJI_KEY = false
+    // Gboard-like: a dedicated emoji key in the bottom row, not just the toolbar.
+    const val PREF_SHOW_EMOJI_KEY = true
     const val PREF_SHOW_DPAD_KEY = true
     const val PREF_VARIABLE_TOOLBAR_DIRECTION = true
     const val PREF_ADDITIONAL_SUBTYPES = "de${Separators.SET}${ExtraValue.KEYBOARD_LAYOUT_SET}=MAIN:qwerty${Separators.SETS}" +
@@ -150,7 +157,7 @@ object Defaults {
     const val PREF_LOCALIZED_NUMBER_ROW = true
     const val PREF_SHOW_NUMBER_ROW_HINTS = false
     const val PREF_CUSTOM_CURRENCY_KEY = ""
-    const val PREF_SHOW_HINTS = true
+    const val PREF_SHOW_HINTS = false
     const val PREF_POPUP_KEYS_ORDER = POPUP_KEYS_ORDER_DEFAULT
     const val PREF_POPUP_KEYS_HINT_ORDER = POPUP_KEYS_LABEL_DEFAULT
     const val PREF_SHOW_POPUP_HINTS = false
@@ -160,7 +167,7 @@ object Defaults {
     const val PREF_LANGUAGE_SWIPE_DISTANCE = 5
     const val PREF_TOUCHPAD_SENSITIVITY = 50
     const val PREF_TOUCHPAD_EDGE_SCROLL = true
-    const val PREF_ENABLE_CLIPBOARD_HISTORY = true
+    const val PREF_ENABLE_CLIPBOARD_HISTORY = false
     const val PREF_CLIPBOARD_HISTORY_RETENTION_TIME = 10 // minutes
     const val PREF_CLIPBOARD_HISTORY_PINNED_FIRST = true
     const val PREF_CLIPBOARD_USE_FILES = true

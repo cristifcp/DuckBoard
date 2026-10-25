@@ -104,7 +104,7 @@
     <string name="label_search_key">Caută</string>
     <string name="label_pause_key">"Pauză"</string>
     <string name="label_wait_key">Așteaptă</string>
-    <string name="ime_settings">Setări HeliBoard</string>
+    <string name="ime_settings">Setări DuckBoard</string>
     <string name="settings_category_additional_keys">Chei suplimentare</string>
     <string name="settings_category_correction">Corectări</string>
     <string name="settings_category_suggestions">Sugestii</string>
@@ -122,8 +122,8 @@
     <string name="auto_correction_confidence">Încrederea în corecție automată</string>
     <string name="clipboard_history_retention_time">Timpul de păstrare a istoricului</string>
     <string name="settings_category_input">Introducere</string>
-    <string name="spell_checker_service_name">Verificator ortografic HeliBoard</string>
-    <string name="android_spell_checker_settings">Setări pentru verificarea ortografică HeliBoard</string>
+    <string name="spell_checker_service_name">Verificator ortografic DuckBoard</string>
+    <string name="android_spell_checker_settings">Setări pentru verificarea ortografică DuckBoard</string>
     <string name="settings_category_clipboard_history">Istoric clipboard</string>
     <string name="enable_clipboard_history">Activează istoricul clipboardului</string>
     <string name="disable_personalized_dicts_message">Avertisment: dezactivarea acestei setări va șterge datele învățate</string>
@@ -424,8 +424,6 @@
     <string name="toolbar_mode_suggestion_strip">Doar sugestii</string>
     <string name="toolbar_mode_hidden">Ascuns</string>
     <string name="toolbar_hiding_global">Ascunde și barele de instrumente pentru clipboard și emoji-uri</string>
-    <string name="about_wiki_link">Mergi la Wiki</string>
-    <string name="about_wiki_link_description">Wiki-ul poate fi îmbunătățit de orice utilizator GitHub!</string>
     <string name="landscape">Peisaj</string>
     <string name="label_zwnj_key" tools:keep="@string/label_zwnj_key">Separare fără spațiu</string>
     <string name="inline_emoji_search_summary">Sugerează emojiuri doar când un cuvânt este precedat de două puncte</string>

@@ -9,11 +9,11 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"
     tools:ignore="MissingTranslation">
     <!-- Name of Android spell checker service. The app name should not be translated. -->
-    <string name="spell_checker_service_name">HeliBoard Spell Checker</string>
+    <string name="spell_checker_service_name">DuckBoard Spell Checker</string>
     <!-- Title for IME settings screen. The app name should not be translated. -->
-    <string name="ime_settings">HeliBoard Settings</string>
+    <string name="ime_settings">DuckBoard Settings</string>
     <!-- Title for the spell checking service settings screen. The app name should not be translated. -->
-    <string name="android_spell_checker_settings">HeliBoard Spell Checker Settings</string>
+    <string name="android_spell_checker_settings">DuckBoard Spell Checker Settings</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
     <string name="vibrate_on_keypress">Vibrate on keypress</string>
     <!-- Option to provide vibrate/haptic feedback on keypress even in do not disturb mode -->
@@ -687,6 +687,12 @@ New dictionary:
     <string name="delete">Delete</string>
     <!-- Text for application version -->
     <string name="version_text">Version %s</string>
+    <!-- Version row on the about screen: version, build number, short commit.
+         The build and commit are what make a bug report actionable. -->
+    <string name="version_text_build">Version %1$s (%2$s)</string>
+    <!-- Top row of the about screen: the fork notice GPLv3 5(a) asks for. -->
+    <string name="about_fork_title" translatable="false">DuckBoard</string>
+    <string name="about_fork_description" translatable="false">DuckBoard is a fork of HeliBoard, under the GNU GPL v3. Tap for the source and the list of changes.</string>
     <!-- User dictionary settings. Label to put before the shortcut field (once a shortcut is registered, the user can type the shortcut and get the word it points to in the suggestions). -->
     <string name="user_dict_settings_add_shortcut_option_name">Shortcut:</string>
     <!-- User dictionary settings. Label to put before the weight field -->
@@ -729,6 +735,10 @@ New dictionary:
     <string name="theme_navbar">Color navigation bar</string>
     <!-- Theme name for light theme -->
     <string name="theme_name_light" tools:keep="@string/theme_name_light">Light</string>
+    <!-- DuckBoard's warm paper theme -->
+    <string name="theme_name_duck_paper" tools:keep="@string/theme_name_duck_paper">Duck Paper</string>
+    <!-- DuckBoard's warm dark theme -->
+    <string name="theme_name_duck_night" tools:keep="@string/theme_name_duck_night">Duck Night</string>
     <!-- Theme name for holo white theme -->
     <string name="theme_name_holo_white" tools:keep="@string/theme_name_holo_white">Holo White</string>
     <!-- Theme name for dark theme (based on old no-border dark) -->
@@ -737,6 +747,11 @@ New dictionary:
     <string name="theme_name_darker" tools:keep="@string/theme_name_darker">Darker</string>
     <!-- Theme name for black theme (based on old amoled black) -->
     <string name="theme_name_black" tools:keep="@string/theme_name_black">Black</string>
+    <!-- Theme name for DuckBoard's cyberpunk preset: neon on near-black -->
+    <string name="theme_name_neon_chrome" tools:keep="@string/theme_name_neon_chrome">Neon Chrome</string>
+    <string name="theme_name_chrome_paper" tools:keep="@string/theme_name_chrome_paper">Chrome Paper</string>
+    <string name="theme_name_voltage" tools:keep="@string/theme_name_voltage">Voltage</string>
+    <string name="theme_name_toxic" tools:keep="@string/theme_name_toxic">Toxic</string>
     <!-- Theme name for dynamic colors light theme -->
     <string name="theme_name_dynamic" tools:keep="@string/theme_name_dynamic">Dynamic colors</string>
     <!-- Theme name for blue-gray theme -->
@@ -805,9 +820,9 @@ New dictionary:
     <!-- github repo link for about screen -->
     <string name="about_github_link">View on GitHub</string>
     <!-- link to the wiki for about screen -->
-    <string name="about_wiki_link">Go to Wiki</string>
+    <string name="about_wiki_link_upstream" translatable="false">HeliBoard wiki</string>
     <!-- description for wiki link -->
-    <string name="about_wiki_link_description">The Wiki can be improved by any GitHub user!</string>
+    <string name="about_wiki_link_description_upstream" translatable="false">Upstream documentation. DuckBoard keeps HeliBoard\'s behaviour apart from the changes listed above.</string>
     <!-- links to community stuff -->
     <string name="about_community_links">Community links</string>
     <!-- description for about_community_links -->
@@ -1029,7 +1044,7 @@ New dictionary:
         Submitted data will be downloaded and deleted from the ProtonMail mailbox where it is stored at our earliest convenience.
         After the gesture data gathering phase has ended, the accumulated data set from all users will be published under the Creative Commons BY-SA 4.0 license.\n\n
 
-        As part of trying to protect your privacy, you won\'t be listed explicitly as an author. Your credit will be as \"The HeliBoard Gesture Data Project Contributors.\" It should not be possible to connect the data you generate in this screen to your identity. However, it might be possible to determine which gestures were made by the same person.
+        As part of trying to protect your privacy, you won\'t be listed explicitly as an author. Your credit will be as \"The DuckBoard Gesture Data Project Contributors.\" It should not be possible to connect the data you generate in this screen to your identity. However, it might be possible to determine which gestures were made by the same person.
         This can be done e.g. from a custom keyboard layout, keyboard dimensions, language, or individual gesturing style.\n\n
     </string>
     <!-- Button text for showing gesture_data_description_privacy
@@ -1058,7 +1073,7 @@ New dictionary:
     <!-- Text requesting the user to gesture a word
      string will probably be removed once data gathering is finished (end of 2026 latest) -->
     <string name="gesture_data_please_type">Please gesture type:</string>
-    <!-- Text requesting the user to switch to HeliBoard, in case a different keyboard app is active
+    <!-- Text requesting the user to switch to DuckBoard, in case a different keyboard app is active
      string will probably be removed once data gathering is finished (end of 2026 latest) -->
     <string name="gesture_data_please_switch_keyboard">Please switch to %s</string>
     <!-- Button for saving data and go to next word (now only shows up when the word %s is not in suggestions)
@@ -1144,7 +1159,7 @@ New dictionary:
      string will probably be removed once data gathering is finished (end of 2026 latest) -->
     <string name="gesture_data_promotion_message">
         Hey there!\n
-        Since you installed the gesture typing library, you might be interested in HeliBoard\'s project for creating a fully open gesture typing library.
+        Since you installed the gesture typing library, you might be interested in DuckBoard\'s project for creating a fully open gesture typing library.
         You can help by contributing gesture data. For more information visit the gesture data gathering screen.
     </string>
     <!-- Message asking the user to contribute to gesture data gathering again (dialog in main settings)
@@ -1178,7 +1193,7 @@ New dictionary:
     <!-- Info dialog main message (other sections in different strings)
      string will probably be removed once data gathering is finished (end of 2026 latest) -->
     <string name="gesture_data_background_gathering_info_message">
-        Turning on background data collection allows Heliboard to record gestures you type in other apps.
+        Turning on background data collection allows DuckBoard to record gestures you type in other apps.
         This is very useful for the gesture typing project as it can produce a considerable amount of data, albeit at lower quality than active gathering.
         Background data collection is not a replacement for actively gathered data, it is meant to be an addition, as data quality is more important than quantity.\n\n
         Background gathering has high potential of collecting data that you may consider too private to share, even when published anonymously.

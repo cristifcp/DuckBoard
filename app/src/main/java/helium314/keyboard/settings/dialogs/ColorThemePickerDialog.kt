@@ -6,6 +6,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.compose.foundation.clickable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
@@ -120,7 +127,7 @@ fun ColorThemePickerDialog(
                         if (item == "") {
                             AddColorRow(onDismissRequest, userColors, targetScreen, setting.key)
                         } else {
-                            ColorItemRow(onDismissRequest, item, item == selectedColor, item in userColors, targetScreen, setting.key)
+                            ColorItemRow(onDismissRequest, item, item == selectedColor, item in userColors, targetScreen, setting.key, isNight)
                         }
                     }
                 }
@@ -199,7 +206,7 @@ private fun AddColorRow(onDismissRequest: () -> Unit, userColors: Collection<Str
 }
 
 @Composable
-private fun ColorItemRow(onDismissRequest: () -> Unit, item: String, isSelected: Boolean, isUser: Boolean, targetScreen: String, prefKey: String) {
+private fun ColorItemRow(onDismissRequest: () -> Unit, item: String, isSelected: Boolean, isUser: Boolean, targetScreen: String, prefKey: String, isNight: Boolean) {
     val ctx = LocalContext.current
     val prefs = ctx.prefs()
     Row(
@@ -211,7 +218,7 @@ private fun ColorItemRow(onDismissRequest: () -> Unit, item: String, isSelected:
                 prefs.edit {putString(prefKey, item)}
                 KeyboardSwitcher.getInstance().setThemeNeedsReload()
             }
-            .padding(start = 6.dp)
+            .padding(start = 6.dp, end = 12.dp)
             .heightIn(min = 40.dp)
     ) {
         RadioButton(
@@ -222,6 +229,9 @@ private fun ColorItemRow(onDismissRequest: () -> Unit, item: String, isSelected:
                 KeyboardSwitcher.getInstance().setThemeNeedsReload()
             }
         )
+        // A name tells you nothing about a colour scheme; the four dots are the
+        // keyboard's background, a key, a suggestion and the gesture trail.
+        ThemeSwatches(item, isNight)
         Text(
             text = item.getStringResourceOrName("theme_name_", ctx),
             style = MaterialTheme.typography.bodyLarge,
@@ -253,9 +263,42 @@ private fun ColorItemRow(onDismissRequest: () -> Unit, item: String, isSelected:
     }
 }
 
+@Composable
+private fun ThemeSwatches(themeName: String, isNight: Boolean) {
+    val ctx = LocalContext.current
+    val prefs = ctx.prefs()
+    val style = prefs.getString(Settings.PREF_THEME_STYLE, Defaults.PREF_THEME_STYLE)
+        ?: Defaults.PREF_THEME_STYLE
+    // Built-in and user themes both resolve through here, so a saved theme gets
+    // a preview without any extra bookkeeping.
+    val colors = remember(themeName, isNight, style) {
+        runCatching { KeyboardTheme.getThemeColors(themeName, style, ctx, prefs, isNight) }.getOrNull()
+    } ?: return
+    val slots = listOf(
+        ColorType.MAIN_BACKGROUND, ColorType.KEY_BACKGROUND,
+        ColorType.KEY_TEXT, ColorType.GESTURE_TRAIL
+    )
+    Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+        slots.forEach { slot ->
+            Box(
+                Modifier
+                    .size(12.dp)
+                    .clip(CircleShape)
+                    .background(Color(colors.get(slot)))
+                    // Near-black swatches vanish into the dialog background;
+                    // the hairline keeps the row readable for dark themes.
+                    .border(
+                        1.dp,
+                        MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.6f),
+                        CircleShape
+                    )
+            )
+        }
+    }
+}
+
 // returns whether the string was successfully deserialized and stored in prefs
-private fun loadColorString(colorString: String, prefs: SharedPreferences): Boolean {
-    try {
+private fun loadColorString(colorString: String, prefs: SharedPreferences): Boolean {    try {
         val that = Json.decodeFromString<SaveThoseColors>(colorString)
         val themeName = KeyboardTheme.getUnusedThemeName(that.name ?: "imported colors", prefs)
         val colors = that.colors.map { ColorSetting(it.key, it.value.second, it.value.first) }

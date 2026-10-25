@@ -1,4 +1,5 @@
 import com.android.build.api.variant.ApplicationVariant
+import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -6,15 +7,68 @@ plugins {
     kotlin("plugin.compose") version "2.4.0"
 }
 
+/**
+ * Release signing material, from `keystore.properties` at the repository root
+ * (git-ignored) or from the environment, so CI can sign without the file ever
+ * entering history. Absent both, release builds stay unsigned, which is what
+ * upstream expects and what F-Droid builds against.
+ */
+val keystoreProperties = Properties().apply {
+    val file = rootProject.file("keystore.properties")
+    if (file.exists()) file.inputStream().use { load(it) }
+}
+
+fun signingValue(key: String, env: String): String? =
+    keystoreProperties.getProperty(key) ?: System.getenv(env)
+
+val releaseStorePath = signingValue("storeFile", "RELEASE_STORE_FILE")
+val releaseStorePassword = signingValue("storePassword", "RELEASE_STORE_PASSWORD")
+val releaseKeyAlias = signingValue("keyAlias", "RELEASE_KEY_ALIAS")
+val releaseKeyPassword = signingValue("keyPassword", "RELEASE_KEY_PASSWORD")
+val hasReleaseKeystore =
+    releaseStorePath != null && releaseStorePassword != null &&
+        releaseKeyAlias != null && releaseKeyPassword != null &&
+        rootProject.file(releaseStorePath).exists()
+
+/**
+ * Which build this is, for bug reports: the commit count and the commit itself.
+ * Read from git rather than from a hand-maintained constant, because a version
+ * someone forgets to bump is worse than no version at all.
+ */
+fun gitValue(vararg args: String): String = runCatching {
+    providers.exec { commandLine("git", *args) }.standardOutput.asText.get().trim()
+}.getOrElse { "unknown" }
+
+// Commit count, not a hand-kept counter: monotonic, unique per build, and it
+// also makes versionName sort correctly for update tools that compare strings.
+val duckboardBuild = gitValue("rev-list", "--count", "HEAD")
+val duckboardCommit = gitValue("rev-parse", "--short", "HEAD")
+
 android {
     compileSdk = 37
 
+    signingConfigs {
+        if (hasReleaseKeystore) {
+            create("release") {
+                storeFile = rootProject.file(releaseStorePath!!)
+                storePassword = releaseStorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+                enableV1Signing = true
+                enableV2Signing = true
+            }
+        }
+    }
+
     defaultConfig {
-        applicationId = "helium314.keyboard"
+        applicationId = "com.cristifcp.duckboard"
         minSdk = 21
         targetSdk = 37
-        versionCode = 4300
-        versionName = "4.3-beta1"
+        versionCode = 5
+        // DuckBoard's own release line, independent of the upstream HeliBoard version.
+        versionName = "1.0"
+        buildConfigField("String", "DUCKBOARD_BUILD", "\"$duckboardBuild\"")
+        buildConfigField("String", "DUCKBOARD_COMMIT", "\"$duckboardCommit\"")
         ndk {
             abiFilters.clear()
             abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
@@ -28,19 +82,20 @@ android {
             isShrinkResources = false
             isDebuggable = false
             isJniDebuggable = false
+            if (hasReleaseKeystore) signingConfig = signingConfigs.getByName("release")
         }
         create("nouserlib") { // same as release, but does not allow the user to provide a library
             isMinifyEnabled = true
             isShrinkResources = false
             isDebuggable = false
             isJniDebuggable = false
+            if (hasReleaseKeystore) signingConfig = signingConfigs.getByName("release")
         }
         debug {
             // "normal" debug has minify for smaller APK to fit the GitHub 25 MB limit when zipped
             // and for better performance in case users want to install a debug APK
             isMinifyEnabled = true
             isJniDebuggable = false
-            applicationIdSuffix = ".debug"
         }
         create("runTests") { // build variant for running tests on CI that skips tests known to fail
             isMinifyEnabled = false
@@ -51,14 +106,11 @@ android {
             isMinifyEnabled = false
             isJniDebuggable = false
             signingConfig = signingConfigs.getByName("debug")
-            applicationIdSuffix = ".debug"
             //isDefault = true // would be nice as default, but breaks unit test handling in Android Studio
         }
 
         androidComponents.onVariants { variant: ApplicationVariant ->
             if (variant.buildType == "debug") {
-                // got a little too big for GitHub after some dependency upgrades, so we remove the largest dictionary
-                variant.androidResources.ignoreAssetsPatterns = listOf("main_ro.dict")
                 variant.proguardFiles = emptyList()
                 //noinspection ProguardAndroidTxtUsage we intentionally use the "normal" file here
                 variant.proguardFiles.add(project.layout.buildDirectory.file(project.buildFile.parent + "/dontoptimize.pro"))
@@ -66,7 +118,7 @@ android {
             }
             variant.outputs.forEach { output ->
                 if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
-                    output.outputFileName = "HeliBoard_${defaultConfig.versionName}-${variant.buildType}.apk"
+                    output.outputFileName = "DuckBoard_${defaultConfig.versionName}-${variant.buildType}.apk"
                 }
             }
         }

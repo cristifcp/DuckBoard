@@ -1,141 +1,106 @@
-# HeliBoard
-HeliBoard is a privacy-conscious and customizable open-source keyboard, based on AOSP / OpenBoard.
-Does not use internet permission, and thus is 100% offline.
+# DuckBoard
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/helium314.keyboard/)
-[<img src="https://user-images.githubusercontent.com/663460/26973090-f8fdc986-4d14-11e7-995a-e7c5e79ed925.png" alt="Get APK from GitHub" height="80">](https://github.com/HeliBorg/HeliBoard/releases/latest)
-[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height="80">](https://apt.izzysoft.de/fdroid/index/apk/helium314.keyboard)
+DuckBoard is a privacy-first Android keyboard with Duck Reader's palette. It is
+a fork of [HeliBoard](https://github.com/HeliBorg/HeliBoard), which descends from
+the AOSP keyboard.
 
-## Table of Contents
+**No `INTERNET` permission.** Not "offline by default", not "network features
+are opt-in": the capability is absent from the manifest, so nothing can leave
+the device. Android cloud backup and device transfer are disabled too.
 
-- [Features](#features)
-- [Contributing](#contributing-)
-   * [Reporting Issues](#reporting-issues)
-   * [Translations](#translations)
-   * [To Community](#to-community)
-   * [Code Contribution](CONTRIBUTING.md)
-- [Links](#links)
-- [License](#license)
-- [Credits](#credits)
-  * [Funding](#funding)
+| Keyboard, dark | Keyboard, light | Emoji | Settings |
+| :---: | :---: | :---: | :---: |
+| <img src="docs/screenshots/keyboard-dark.png" width="200" alt="DuckBoard dark keyboard" /> | <img src="docs/screenshots/keyboard-light.png" width="200" alt="DuckBoard light keyboard with suggestions" /> | <img src="docs/screenshots/emoji.png" width="200" alt="DuckBoard emoji panel" /> | <img src="docs/screenshots/settings.png" width="200" alt="DuckBoard settings" /> |
 
-# Features
-<ul>
-  <li>Add dictionaries for suggestions and spell check</li>
-  <ul>
-    <li>build your own, or get them  <a href="https://codeberg.org/Helium314/aosp-dictionaries#dictionaries">here</a> (quality may vary)</li>
-    <li>additional dictionaries for emojis or scientific symbols can be used to provide suggestions (similar to "emoji search")</li>
-    <li>note that for Korean layouts, suggestions only work using <a href="https://github.com/openboard-team/openboard/commit/83fca9533c03b9fecc009fc632577226bbd6301f">this dictionary</a>, the tools in the dictionary repository are not able to create working dictionaries</li>
-  </ul>
-  <li>Customize keyboard themes (style, colors and background image)</li>
-  <li>Emoji search (inline and separate, requires <a href="https://codeberg.org/Helium314/aosp-dictionaries">emoji dictionary</a>)</li>
-  <ul>
-    <li>can follow the system's day/night setting on Android 10+ (and on some versions of Android 9)</li>
-    <li>can follow dynamic colors for Android 12+</li>
-  </ul>
-  <li>Customize keyboard <a href="https://github.com/HeliBorg/HeliBoard/blob/main/layouts.md">layouts</a> (only available when disabling <i>use system languages</i>)</li>
-  <li>Customize special layouts, like symbols, number,  or functional key layout</li>
-  <li>Multilingual typing</li>
-  <li>Glide typing (<i>only with closed source library</i> ☹️)</li>
-  <ul>
-    <li>library not included in the app, as there is no compatible open source library available</li>
-    <li>can be extracted from GApps packages ("<i>swypelibs</i>"), or downloaded <a href="https://github.com/erkserkserks/openboard/tree/46fdf2b550035ca69299ce312fa158e7ade36967/app/src/main/jniLibs">here</a> (click on the file and then "raw" or the tiny download button)</li>
-  </ul>
-  <li>Clipboard history</li>
-  <li>One-handed mode</li>
-  <li>Split keyboard</li>
-  <li>Number pad</li>
-  <li>Backup and restore your settings and learned word / history data</li>
-</ul>
+## Download
 
-For [FAQ](https://github.com/HeliBorg/HeliBoard/wiki/FAQ), [hidden features](https://github.com/HeliBorg/HeliBoard/wiki/9.-Hidden-features) and more information about the app and features, please visit the [wiki](https://github.com/HeliBorg/HeliBoard/wiki)
+Install the signed APK from Releases, or build it yourself. Requires Android
+5.0 (API 21) or newer.
 
-# Contributing ❤
+To get updates without the keyboard checking the network (which it cannot do),
+use [Obtainium](https://github.com/ImranR98/Obtainium) and point it at this
+repository. Version names carry a monotonic build number.
 
-## Reporting Issues
+## Install
 
-Whether you encountered a bug, or want to see a new feature in HeliBoard, you can contribute to the project by opening a new issue [here](https://github.com/HeliBorg/HeliBoard/issues). Your help is always welcome!
+1. Install the APK.
+2. Settings → System → Languages & input → On-screen keyboard → Manage
+   keyboards → enable **DuckBoard**.
+3. Pick DuckBoard as the current keyboard.
 
-Before opening a new issue, be sure to check the following:
- - **Does the issue already exist?** Make sure a similar issue has not been reported by browsing [existing issues](https://github.com/HeliBorg/HeliBoard/issues?q=). Please search open and closed issues. In case of feature requests you could also check the [FAQ](https://github.com/HeliBorg/HeliBoard/wiki/FAQ) and [hidden features](https://github.com/HeliBorg/HeliBoard/wiki/9.-Hidden-features).
- - **Is the issue still relevant?** Make sure your issue is not already fixed in the latest version of HeliBoard.
- - **Is it a single topic?** If you want to suggest multiple things, open multiple issues.
- - **Did you use the issue template?** It is important to make life of our kind contributors easier by avoiding issues that miss key information to their resolution.
- - **Is it written by a human?** Do not use LLMs or similar to generate issues. Having LLMs help with translation or similar is acceptable, but must be disclosed. See also [AI_USAGE.md](AI_USAGE.md)
-Note that issues that that ignore part of the issue template will likely get treated with very low priority, as often they are needlessly hard to read or understand (e.g. huge screenshots, not providing a proper description, or addressing multiple topics). Blatant violation of the guidelines may result in the issue getting closed.
+## What DuckBoard changes
 
-If you're interested, you can read the following useful text about effective bug reporting (a bit longer read): https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
+DuckBoard keeps everything that makes HeliBoard a good keyboard — gesture
+typing, suggestions and autocorrect, dictionaries, clipboard history, emoji,
+multilingual layouts, one-handed and split modes — and changes the identity and
+the out-of-box look:
 
-## Translations
-Translations can be added using [Weblate](https://translate.codeberg.org/projects/heliboard/). You will need an account to update translations and add languages. Add the language you want to translate to in Languages -> Manage translated languages in the top menu bar.
-Updating translations in a PR will not be accepted, as it may cause conflicts with Weblate translations.
+- **Duck Paper and Duck Night themes**, built on Duck Reader's warm paper,
+  deep teal and amber. Duck Night is the default at night, Duck Paper by day.
+- **Rounded, filled keys by default.** HeliBoard's Material style draws
+  transparent key backgrounds unless key borders are on; DuckBoard ships with
+  rounded filled keys because floating letters are not a keyboard.
+- **Gboard-like defaults:** a dedicated emoji key in the bottom row, key hints
+  off, autocorrect and gesture typing on, vibration on, sound off.
+- **A cheerful duck-and-keyboard launcher icon** in adaptive, legacy and round
+  forms, from the artwork in `branding/duckboard-icon.png`.
+- **Clipboard history is off by default**, so copied text is not retained unless
+  you turn it on.
+- **No Android backup.** Learned words, clipboard history and settings stay in
+  the app's private storage instead of going to a cloud backup.
+- **Romanian dictionary kept in debug builds.** Upstream strips `main_ro.dict`
+  from debug APKs to save space; DuckBoard keeps it.
+- **DuckBoard identity everywhere:** app and IME name, settings title,
+  spell-checker, About screen, provider authorities and package id
+  (`com.cristifcp.duckboard`), so it installs alongside HeliBoard.
 
-Some notes on translations
-* when translating metadata, translating the changelogs is rather useless. It's available as it was requested by translators.
-* the `hidden_features_message` is horrible to translate with Weblate, and serves little benefit as it's just a copy of what's already in the wiki: https://github.com/HeliBorg/HeliBoard/wiki/9.-Hidden-features. It's been made available in the app on user request/contribution.
+The full list, with files, is in [MODIFICATIONS.md](MODIFICATIONS.md).
 
-## To Community
-There is the [discussions on GitHub](https://github.com/HeliBorg/HeliBoard/discussions), or if you prefer a more open network there is [Lemmy](https://lemmy.world/c/Heliboard).
-You can share your themes, layouts and dictionaries with other people:
-* Themes can be saved and loaded using the menu on top-right in the _adjust colors_ screen
-  * you can share custom colors in a separate [discussion section](https://github.com/HeliBorg/HeliBoard/discussions/categories/custom-colors)
-  * there are theme collections available at [Star-Trowa/heliboard-themes](https://github.com/Star-Trowa/heliboard-themes) and [PickleHik3/droid-tings](https://github.com/PickleHik3/droid-tings)
-* Custom keyboard layouts are text files whose content you can edit, copy and share
-  * this applies to main keyboard layouts and to special layouts adjustable in advanced settings
-  * see [layouts.md](layouts.md) for details
-  * you can share custom layouts in a separate [discussion section](https://github.com/HeliBorg/HeliBoard/discussions/categories/custom-layout)
-  * [Roccobot's Layout Maker](https://roccobot.github.io/HeliBoard-RLM/) is a browser-based editor for json layout files
-* Creating dictionaries is a little more work
-  * first you will need a wordlist in the format from [here](https://codeberg.org/Helium314/aosp-dictionaries/src/branch/main/wordlists/sample.combined) and in the repository readme
-    * you can load the wordlist dictionary directly in HeliBoard like you would load a dictionary, but other AOSP keyboard forks will likely need the .dict file
-  * then you need to compile the dictionary using [external tools](https://github.com/remi0s/aosp-dictionary-tools)
-    * when you want to add the dictionary to the [repository](https://codeberg.org/Helium314/aosp-dictionaries/), no need to compile to a .dict file
-  * the resulting file (and ideally the wordlist too) can be shared with other users
-  * note that there will not be any further dictionaries added to this app, but you can add dictionaries to the [dictionaries repository](https://codeberg.org/Helium314/aosp-dictionaries)
+## Features from HeliBoard
 
-## Code Contribution
-See [Contribution Guidelines](CONTRIBUTING.md)
+- Glide typing with open gesture data, suggestion strip, autocorrect, learned
+  words, user dictionary and per-language dictionaries.
+- Multilingual typing and subtypes, including Romanian.
+- Emoji panel with search and recents, clipboard history with pinning (off by
+  default), and incognito mode that pauses clipboard history.
+- Number row, long-press popups, one-handed mode, split keyboard, floating
+  keyboard, custom layouts, key borders, theme colours and height scaling.
+- No ads, no analytics, no account, no network permission.
 
-# Links
-* Info
-  * [Wiki](https://github.com/HeliBorg/HeliBoard/wiki), including FAQ, help on customizing layouts, and gesture data gathering
-  * [Layout documentation](layouts.md) (more technical info regarding layout customization)
-  * [For creating custom dictionaries](https://codeberg.org/Helium314/aosp-dictionaries#wordlist-information) (see also top of the linked readme)
-* Community
-  * [Lemmy](https://lemmy.world/c/Heliboard)
-  * [Reddit](https://www.reddit.com/r/HeliBoard)
-  * GitHub [discussions](https://github.com/HeliBorg/HeliBoard/discussions)
-* Other
-  * [Translations](https://translate.codeberg.org/projects/heliboard/)
-  * [Dictionaries](https://codeberg.org/Helium314/aosp-dictionaries)
-  * [k3lp](https://codeberg.org/k3lp/k3lp) is a WIP library for keyboard layout parsing that will be implemented in HeliBoard when ready (created by [FlorisBoard](https://github.com/florisboard/florisboard/) maintainers)
-  * [swipe-o-scope](https://codeberg.org/eclexic/swipe-o-scope) for visualizing gesture data as created when using gesture data gathering
+## Build
 
-# License
+Needs JDK 17 or newer and the Android SDK with `compileSdk 37`.
 
-HeliBoard (as a fork of OpenBoard) is licensed under GNU General Public License v3.0.
+```bash
+./gradlew assembleDebug          # debug build, installs as DuckBoard
+./gradlew assembleRelease        # signed only if a keystore is configured
+```
 
- > Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
+`assembleRelease` signs when `keystore.properties` exists at the repository root
+(git-ignored) or the `RELEASE_STORE_FILE`, `RELEASE_STORE_PASSWORD`,
+`RELEASE_KEY_ALIAS` and `RELEASE_KEY_PASSWORD` environment variables are set.
 
-See repo's [LICENSE](/LICENSE) file.
+## Tests
 
-Since the app is based on Apache 2.0 licensed AOSP Keyboard, an [Apache 2.0](LICENSE-Apache-2.0) license file is provided.
-The icon is licensed under [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). A [license file](LICENSE-CC-BY-SA-4.0) is also included.
+```bash
+./gradlew testDebugUnitTest      # JVM tests
+./gradlew lintDebug              # Android lint
+```
 
-# Credits
-- Icon by [Fabian OvrWrt](https://github.com/FabianOvrWrt) with contributions from [The Eclectic Dyslexic](https://github.com/the-eclectic-dyslexic)
-- [OpenBoard](https://github.com/openboard-team/openboard)
-- [AOSP Keyboard](https://android.googlesource.com/platform/packages/inputmethods/LatinIME/)
-- [LineageOS](https://review.lineageos.org/admin/repos/LineageOS/android_packages_inputmethods_LatinIME)
-- [Simple Keyboard](https://github.com/rkkr/simple-keyboard)
-- [Indic Keyboard](https://gitlab.com/indicproject/indic-keyboard)
-- [FlorisBoard](https://github.com/florisboard/florisboard/)
-- Our [contributors](https://github.com/HeliBorg/HeliBoard/graphs/contributors)
+## Privacy
 
-## Funding
+No account, analytics, ads or network permission. The keyboard's learned words,
+clipboard history and settings live in the app's private, device-protected
+storage; Android backup and device-to-device transfer are excluded. Clipboard
+history pauses while incognito is active. A backup can still be written
+manually through Settings → Advanced → Backup, and it goes only where you point
+it.
 
-This project is funded through [NGI Mobifree Fund](https://nlnet.nl/mobifree), a fund established by [NLnet](https://nlnet.nl) with financial support from the European Commission's [Next Generation Internet](https://ngi.eu) program. Learn more at the [NLnet project page](https://nlnet.nl/project/GestureTyping).
+## Licence and credits
 
-[<img src="https://nlnet.nl/logo/banner.png" alt="NLnet foundation logo" width="20%" />](https://nlnet.nl)
+GNU GPL v3.0 — see [LICENSE](LICENSE). DuckBoard is based on HeliBoard (© the
+HeliBoard contributors) and the AOSP keyboard. Because this is a modified GPL
+work, anyone who receives a build is entitled to the source it was built from.
 
-Further the project benefits from donations provided by many users (thank you all!).
+The duck artwork and the Duck Paper / Duck Night palettes are part of this
+project's artwork, shared with Duck Reader.

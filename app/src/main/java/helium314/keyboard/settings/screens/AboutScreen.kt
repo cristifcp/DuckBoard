@@ -53,11 +53,11 @@ fun AboutScreen(
 ) {
     val items = listOf(
         SettingsWithoutKey.APP,
+        SettingsWithoutKey.FORK,
         SettingsWithoutKey.VERSION,
         SettingsWithoutKey.LICENSE,
         SettingsWithoutKey.HIDDEN_FEATURES,
         SettingsWithoutKey.GITHUB_WIKI,
-        SettingsWithoutKey.COMMUNITY_LINKS,
         SettingsWithoutKey.GITHUB,
         SettingsWithoutKey.SAVE_LOG,
     )
@@ -77,13 +77,34 @@ fun createAboutSettings(context: Context) = listOf(
             icon = R.mipmap.ic_launcher_round
         )
     },
+    // GPLv3 5(a): the distributed work itself has to say it was modified, with a
+    // date. The repository's MODIFICATIONS.md is only reached by people who look
+    // for the source, which is not the same as telling every user.
+    Setting(context, SettingsWithoutKey.FORK, R.string.about_fork_title, R.string.about_fork_description) {
+        val ctx = LocalContext.current
+        Preference(
+            name = it.title,
+            description = it.description,
+            onClick = {
+                val intent = Intent()
+                intent.data = Links.MODIFICATIONS.toUri()
+                intent.action = Intent.ACTION_VIEW
+                ctx.startActivity(intent)
+            },
+            icon = R.drawable.ic_settings_about_license
+        )
+    },
     Setting(context, SettingsWithoutKey.VERSION, R.string.version) {
         var count by rememberSaveable { mutableIntStateOf(0) }
         val ctx = LocalContext.current
         val prefs = ctx.prefs()
         Preference(
             name = it.title,
-            description = stringResource(R.string.version_text, BuildConfig.VERSION_NAME),
+            description = stringResource(
+                R.string.version_text_build,
+                BuildConfig.VERSION_NAME,
+                BuildConfig.DUCKBOARD_COMMIT,
+            ),
             onClick = {
                 if (prefs.getBoolean(DebugSettings.PREF_SHOW_DEBUG_SETTINGS, Defaults.PREF_SHOW_DEBUG_SETTINGS) || BuildConfig.DEBUG)
                     return@Preference
@@ -133,7 +154,7 @@ fun createAboutSettings(context: Context) = listOf(
             icon = R.drawable.ic_settings_about_hidden_features
         )
     },
-    Setting(context, SettingsWithoutKey.GITHUB_WIKI, R.string.about_wiki_link, R.string.about_wiki_link_description) {
+    Setting(context, SettingsWithoutKey.GITHUB_WIKI, R.string.about_wiki_link_upstream, R.string.about_wiki_link_description_upstream) {
         val ctx = LocalContext.current
         Preference(
             name = it.title,
@@ -147,20 +168,6 @@ fun createAboutSettings(context: Context) = listOf(
             icon = R.drawable.ic_settings_about_wiki
         )
     },
-    Setting(context, SettingsWithoutKey.COMMUNITY_LINKS, R.string.about_community_links, R.string.about_community_links_description) {
-        val ctx = LocalContext.current
-        Preference(
-            name = it.title,
-            description = it.description,
-            onClick = {
-                val intent = Intent()
-                intent.data = Links.COMMUNITY_LINKS.toUri()
-                intent.action = Intent.ACTION_VIEW
-                ctx.startActivity(intent)
-            },
-            icon = R.drawable.ic_settings_about_community
-        )
-     },
     Setting(context, SettingsWithoutKey.GITHUB, R.string.about_github_link) {
         val ctx = LocalContext.current
         Preference(

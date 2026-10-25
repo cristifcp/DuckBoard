@@ -1,0 +1,47 @@
+name: CI
+
+# Fork-specific: upstream only builds on request, so a broken commit would
+# otherwise stay invisible until a release tag is pushed. This catches it in
+# minutes on every push to the branch that ships.
+on:
+  push:
+    branches: [ variant ]
+  pull_request:
+    branches: [ variant ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Full history: the build number is the commit count, and a shallow
+          # clone would report 1 for every build.
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+
+      - name: Build debug
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      # assembleDebug does not run lintVitalRelease, so a resource error that
+      # only bites the release build (for example a translation whose default
+      # key was renamed) would stay invisible until a tag was pushed. This is
+      # the cheap way to see it on every push instead.
+      - name: Release lint
+        run: ./gradlew :app:lintVitalRelease --no-daemon --stacktrace
+
+      - name: Upload the APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: duckboard-debug
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 14

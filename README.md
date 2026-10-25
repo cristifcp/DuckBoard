@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="branding/duckboard-icon.png" width="132" alt="DuckBoard: a cheerful duck typing on a keyboard" />
+<img src="branding/duckboard-logo.png" width="132" alt="DuckBoard: a cheerful duck typing on a keyboard" />
 
 <h1>DuckBoard</h1>
 
@@ -69,8 +69,8 @@ Then:
 
 | Duck Night | Duck Paper |
 | :---: | :---: |
-| <img src="docs/screenshots/keyboard-dark.png" width="300" alt="DuckBoard's dark keyboard" /><br /><sub><b>Duck Night</b><br />Deep teal keys, cream text, amber action key.</sub> | <img src="docs/screenshots/keyboard-light.png" width="300" alt="DuckBoard's light keyboard with suggestions" /><br /><sub><b>Duck Paper</b><br />Warm paper, white keys, suggestions above.</sub> |
-| <img src="docs/screenshots/emoji.png" width="300" alt="DuckBoard's emoji panel" /><br /><sub><b>Emoji</b><br />Categories, recents, search — all local.</sub> | <img src="docs/screenshots/settings.png" width="230" alt="DuckBoard settings" /><br /><sub><b>Settings</b><br />Languages, appearance, typing and clipboard.</sub> |
+| <img src="docs/screenshots/keyboard-night-hints.png" width="300" alt="DuckBoard's dark keyboard" /><br /><sub><b>Duck Night</b><br />Deep teal keys, cream text, amber action key.</sub> | <img src="docs/screenshots/keyboard-paper-hints.png" width="300" alt="DuckBoard's light keyboard with suggestions" /><br /><sub><b>Duck Paper</b><br />Warm paper, white keys, suggestions above.</sub> |
+| <img src="docs/screenshots/emoji-panel.png" width="300" alt="DuckBoard's emoji panel" /><br /><sub><b>Emoji</b><br />Categories, recents, search — all local.</sub> | <img src="docs/screenshots/settings-panel.png" width="230" alt="DuckBoard settings" /><br /><sub><b>Settings</b><br />Languages, appearance, typing and clipboard.</sub> |
 
 ## Features
 
@@ -79,7 +79,7 @@ Then:
 - Glide typing with HeliBoard's gesture decoder and open gesture data.
 - Suggestion strip, autocorrect, learned words and a personal dictionary.
 - Bundled dictionaries and multilingual subtypes, including Romanian.
-- Number row, long-press accents and symbols, one-handed, split and floating
+- Number hints **1�0 at the top-right of the QWERTY keys**, plus an optional full number row, long-press accents and symbols, one-handed, split and floating
   modes, plus key height, gap and padding controls.
 - Text correction, double-space period, auto-capitalisation and backspace
   reverting the last autocorrect.

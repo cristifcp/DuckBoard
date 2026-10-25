@@ -69,8 +69,8 @@ Then:
 
 | Duck Night | Duck Paper |
 | :---: | :---: |
-| <img src="docs/screenshots/keyboard-dark.png" width="250" alt="DuckBoard's dark keyboard" /><br /><sub><b>Duck Night</b><br />Deep teal keys, cream text, amber action key.</sub> | <img src="docs/screenshots/keyboard-light.png" width="250" alt="DuckBoard's light keyboard with suggestions" /><br /><sub><b>Duck Paper</b><br />Warm paper, white keys, suggestions above.</sub> |
-| <img src="docs/screenshots/emoji.png" width="250" alt="DuckBoard's emoji panel" /><br /><sub><b>Emoji</b><br />Categories, recents, search — all local.</sub> | <img src="docs/screenshots/settings.png" width="250" alt="DuckBoard settings" /><br /><sub><b>Settings</b><br />Languages, appearance, typing and clipboard.</sub> |
+| <img src="docs/screenshots/keyboard-dark.png" width="300" alt="DuckBoard's dark keyboard" /><br /><sub><b>Duck Night</b><br />Deep teal keys, cream text, amber action key.</sub> | <img src="docs/screenshots/keyboard-light.png" width="300" alt="DuckBoard's light keyboard with suggestions" /><br /><sub><b>Duck Paper</b><br />Warm paper, white keys, suggestions above.</sub> |
+| <img src="docs/screenshots/emoji.png" width="300" alt="DuckBoard's emoji panel" /><br /><sub><b>Emoji</b><br />Categories, recents, search — all local.</sub> | <img src="docs/screenshots/settings.png" width="230" alt="DuckBoard settings" /><br /><sub><b>Settings</b><br />Languages, appearance, typing and clipboard.</sub> |
 
 ## Features
 

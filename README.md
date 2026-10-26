@@ -79,7 +79,7 @@ Then:
 - Glide typing with HeliBoard's gesture decoder and open gesture data.
 - Suggestion strip, autocorrect, learned words and a personal dictionary.
 - Bundled dictionaries and multilingual subtypes, including Romanian.
-- Number hints **1–0 at the top-right of the QWERTY keys**, plus an optional full number row, long-press accents and symbols, one-handed, split and floating
+- Number hints **1â€“0 at the top-right of the QWERTY keys**, plus an optional full number row, long-press accents and symbols, one-handed, split and floating
   modes, plus key height, gap and padding controls.
 - Text correction, double-space period, auto-capitalisation and backspace
   reverting the last autocorrect.

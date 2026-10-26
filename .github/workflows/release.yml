@@ -57,8 +57,8 @@ jobs:
           bt=$(find "$ANDROID_HOME/build-tools" -maxdepth 1 -mindepth 1 -type d | sort -V | tail -n 1)
           "$bt/apksigner" verify --print-certs "$apk"
           mkdir -p dist
-          cp "$apk" dist/
-          (cd dist && sha256sum ./*.apk > SHA256SUMS.txt)
+          cp "$apk" dist/DuckBoard.apk
+          (cd dist && sha256sum DuckBoard.apk > SHA256SUMS.txt)
           echo "APK=$apk" >> "$GITHUB_ENV"
 
       - name: Publish the GitHub Release

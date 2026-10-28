@@ -64,9 +64,9 @@ android {
         applicationId = "com.cristifcp.duckboard"
         minSdk = 21
         targetSdk = 37
-        versionCode = 6
+        versionCode = 7
         // DuckBoard's own release line, independent of the upstream HeliBoard version.
-        versionName = "1.0"
+        versionName = "1.1"
         buildConfigField("String", "DUCKBOARD_BUILD", "\"$duckboardBuild\"")
         buildConfigField("String", "DUCKBOARD_COMMIT", "\"$duckboardCommit\"")
         ndk {

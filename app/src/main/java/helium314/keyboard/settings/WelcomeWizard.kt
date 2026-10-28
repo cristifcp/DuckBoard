@@ -28,12 +28,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.getValue
@@ -122,11 +124,11 @@ private fun Heading(step: Int, appName: String) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         if (step == 0) {
             Image(
-                painterResource(R.drawable.setup_welcome_image),
+                painterResource(R.drawable.duckboard_welcome),
                 contentDescription = null,
-                modifier = Modifier.heightIn(max = 220.dp)
+                modifier = Modifier.size(180.dp)
             )
-            Spacer(Modifier.height(24.dp))
+            Spacer(Modifier.height(20.dp))
         }
         Text(
             stringResource(
@@ -141,6 +143,15 @@ private fun Heading(step: Int, appName: String) {
             Text(
                 stringResource(R.string.setup_welcome_additional_description),
                 style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+            )
+        }
+        if (step == 0) {
+            Spacer(Modifier.height(14.dp))
+            Text(
+                stringResource(R.string.setup_welcome_privacy),
+                style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
             )
@@ -169,6 +180,7 @@ private fun Steps(
         return
     }
 
+    var testText by rememberSaveable { mutableStateOf("") }
     Column {
         val ctx = LocalContext.current
         StepProgress(step)
@@ -206,15 +218,25 @@ private fun Steps(
             ) {
                 imm.showInputMethodPicker()
             }
-            else -> StepCard(
-                icon = painterResource(R.drawable.sym_keyboard_language_switch),
-                title = stringResource(R.string.setup_step3_title),
-                instruction = stringResource(R.string.setup_step3_instruction, appName),
-                actionText = stringResource(R.string.setup_step3_action),
-                secondaryText = stringResource(R.string.setup_finish_action),
-                onSecondary = finish,
-            ) {
-                close()
+            else -> Column {
+                OutlinedTextField(
+                    value = testText,
+                    onValueChange = { testText = it },
+                    label = { Text(stringResource(R.string.setup_try_hint)) },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(Modifier.height(16.dp))
+                StepCard(
+                    icon = painterResource(R.drawable.sym_keyboard_language_switch),
+                    title = stringResource(R.string.setup_step3_title),
+                    instruction = stringResource(R.string.setup_step3_instruction, appName),
+                    actionText = stringResource(R.string.setup_step3_action),
+                    secondaryText = stringResource(R.string.setup_finish_action),
+                    onSecondary = finish,
+                ) {
+                    close()
+                }
             }
         }
     }

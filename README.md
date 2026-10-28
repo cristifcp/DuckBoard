@@ -6,7 +6,8 @@
 
 <p><strong>A quiet, privacy-first keyboard for Android.</strong></p>
 
-<p>Gesture typing, suggestions and emoji — with no account, no analytics,<br />
+<p>Gesture typing, suggestions and emoji — with no account, no analytics,
+no contacts access,<br />
 and no <code>INTERNET</code> permission to leak anything through.</p>
 
 <p>
@@ -16,6 +17,7 @@ and no <code>INTERNET</code> permission to leak anything through.</p>
 <a href="https://github.com/HeliBorg/HeliBoard"><img src="https://img.shields.io/badge/engine-HeliBoard-4f46e5?style=flat-square" alt="Based on HeliBoard" /></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-c98a2b?style=flat-square" alt="GPL-3.0" /></a>
 <a href="#privacy"><img src="https://img.shields.io/badge/network-none-2ea44f?style=flat-square" alt="No network permission" /></a>
+<a href="#privacy"><img src="https://img.shields.io/badge/permissions-no%20dangerous-2ea44f?style=flat-square" alt="No dangerous permissions" /></a>
 </p>
 
 <p><a href="#install">Install</a> · <a href="#screenshots">Screenshots</a> · <a href="#features">Features</a> · <a href="#build">Build</a> · <a href="#privacy">Privacy</a> · <a href="#status-and-limits">Status</a> · <a href="#license">License</a></p>
@@ -59,11 +61,13 @@ apksigner verify --print-certs DuckBoard.apk
 
 Then:
 
-1. **Settings → System → Languages & input → On-screen keyboard → Manage keyboards**
-   and enable **DuckBoard**.
-2. Go back and choose **DuckBoard** as the current keyboard.
-3. Open any text field and type. Long-press a letter for accents; the emoji key
-   is in the bottom row.
+1. Open **DuckBoard** from the launcher. The setup wizard walks you through
+   enabling it and switching to it.
+2. If you prefer the system settings: **Settings → System → Languages & input →
+   On-screen keyboard → Manage keyboards**, enable **DuckBoard**, then select it
+   as the current keyboard.
+3. Type in the wizard's test field, or open any text field. Long-press a letter
+   for accents; the emoji key is in the bottom row.
 
 ## Screenshots
 
@@ -73,6 +77,13 @@ Then:
 | <img src="docs/screenshots/emoji-panel.png" width="300" alt="DuckBoard's emoji panel" /><br /><sub><b>Emoji</b><br />Categories, recents, search — all local.</sub> | <img src="docs/screenshots/settings-panel.png" width="230" alt="DuckBoard settings" /><br /><sub><b>Settings</b><br />Languages, appearance, typing and clipboard.</sub> |
 
 ## Features
+
+**Setup and privacy**
+
+- A first-run wizard with the duck mark, a plain-language privacy promise, and a
+  test field so you can try the keyboard before leaving setup.
+- **No dangerous permissions.** DuckBoard does not request contacts, location,
+  storage, microphone or the network.
 
 **Typing**
 
@@ -89,12 +100,13 @@ Then:
 - **Duck Night** and **Duck Paper** themes, built on Duck Reader's cream, teal
   and amber palette. Night is the dark default, Paper the light one.
 - Rounded, filled keys by default instead of HeliBoard's transparent Material
-  keys; key hints off; a dedicated emoji key in the bottom row.
+  keys; number hints on the top row; a dedicated emoji key in the bottom row.
 - Custom colours, key borders, icon style and background image, all in Settings.
 
 **Privacy**
 
 - No `INTERNET` permission: the capability is absent from the manifest.
+- No contacts permission either. DuckBoard cannot read your address book.
 - Android cloud backup and device-to-device transfer are disabled.
 - Clipboard history is **off by default**; turn it on in Clipboard settings when
   you want it, and incognito pauses it again.
@@ -130,14 +142,15 @@ build signed with a different key.
 
 ## Privacy
 
-DuckBoard has no network permission and no analytics. Learned words, user
-dictionary entries, clipboard history and settings live in the app's private,
-device-protected storage; Android backup and device transfer are excluded.
+DuckBoard has no network permission and no analytics. It also has no contacts
+permission: contact-name suggestions were removed rather than left behind a
+permission prompt. Learned words, user dictionary entries, clipboard history and
+settings live in the app's private, device-protected storage; Android backup and
+device transfer are excluded.
 
-Contacts are used only by HeliBoard's optional contact dictionary. The
-`READ_CONTACTS` permission is declared for that feature, and Android asks for it
-at runtime only if you enable the contact dictionary. Decline it and everything
-else still works.
+The remaining manifest permissions are normal Android permissions used for
+vibration, boot-time setup and the user dictionary — none of them expose personal
+data or require a runtime prompt.
 
 A backup can be written manually from **Settings → Advanced → Backup**, and it
 goes only where you point it. Uninstalling the app deletes its data, so keep a
@@ -145,7 +158,7 @@ backup if you rely on learned words.
 
 ## Status and limits
 
-This is DuckBoard 1.0, based on HeliBoard 4.3-beta1. It is a daily-driver
+This is DuckBoard 1.1, based on HeliBoard 4.3-beta1. It is a daily-driver
 keyboard, not a finished product. Known limits:
 
 - Android only; there is no iOS or desktop version.

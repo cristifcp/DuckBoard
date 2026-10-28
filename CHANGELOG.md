@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-29 — DuckBoard 1.1
+
+- First-run setup wizard now uses the duck mark, states the privacy promise and
+  includes a test field.
+- Removed `READ_CONTACTS` and the contact-name dictionary UI. DuckBoard now
+  requests no dangerous permissions.
+- Version bumped to 1.1 (`versionCode 7`); no change to the signing key.
+
 ## 2026-10-25 — DuckBoard 1.0
 
 First DuckBoard release, based on HeliBoard 4.3-beta1.

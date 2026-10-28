@@ -77,6 +77,8 @@
     <string name="setup_step3_title">Felicitări, ai finalizat!</string>
     <string name="setup_step3_instruction">Acum, poți introduce text în toate aplicațiile preferate, utilizând %s.</string>
     <string name="setup_finish_action">"Finalizat"</string>
+    <string name="setup_welcome_privacy">Fără permisiune INTERNET · fără acces la contacte · istoric clipboard oprit implicit.</string>
+    <string name="setup_try_hint">Scrie un cuvânt…</string>
     <string name="show_setup_wizard_icon">Afișează pictograma aplicației</string>
     <string name="show_setup_wizard_icon_summary">Afișează pictograma aplicației în lansator</string>
     <string name="dictionary_category_title">"Dicționare suplimentare"</string>

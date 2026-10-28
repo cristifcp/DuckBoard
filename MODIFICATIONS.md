@@ -34,7 +34,7 @@ upstream merge a conflict. The `applicationId` is the identity that matters.
 | Duck Night is the night default, Duck Paper the day default | `app/.../latin/settings/Defaults.kt` |
 | Default style **Rounded** with key borders, so keys are filled instead of transparent | `app/.../latin/settings/Defaults.kt` |
 | Emoji key in the bottom row by default | `app/.../latin/settings/Defaults.kt` (`PREF_SHOW_EMOJI_KEY`) |
-| Key hints off by default (Gboard-like clean keys) | `app/.../latin/settings/Defaults.kt` (`PREF_SHOW_HINTS`) |
+| Numbers 1–0 as top-right hints on the QWERTY row; other hints stay off | `app/.../latin/settings/Defaults.kt` (`PREF_SHOW_HINTS`, `PREF_POPUP_KEYS_HINT_ORDER`) |
 | Romanian dictionary no longer stripped from debug builds | `app/build.gradle.kts` |
 
 ## Privacy
@@ -43,13 +43,15 @@ upstream merge a conflict. The `applicationId` is the identity that matters.
 |---|---|
 | Clipboard history off by default | `app/.../latin/settings/Defaults.kt` (`PREF_ENABLE_CLIPBOARD_HISTORY`) |
 | Android backup and device transfer disabled; learned words and clipboard history stay on the device | `app/src/main/AndroidManifest.xml`, `app/src/main/res/xml/data_extraction_rules.xml` |
+| `READ_CONTACTS` removed; contact-name suggestions and their settings entry removed | `app/src/main/AndroidManifest.xml`, `app/.../settings/screens/TextCorrectionScreen.kt`, `app/.../settings/SettingsActivity.kt` |
+| First-run wizard carries the privacy promise and a test field | `app/.../settings/WelcomeWizard.kt`, `app/src/main/res/values*/strings.xml` |
 
 ## Not changed
 
 - `LICENSE` — untouched, GPL-3.0.
 - Copyright headers and author credits — untouched, including upstream issue
   links in comments, which keep pointing at `HeliBorg/HeliBoard` on purpose.
-- No network code was added and no permission was requested. DuckBoard keeps the
+- No network code was added; `READ_CONTACTS` was removed. DuckBoard keeps the
   defining property of upstream: no `INTERNET` permission.
 - Any behaviour, default, or setting not listed above.
 
